@@ -6,26 +6,20 @@ import SearchBar from './search_bar';
 import Gif from './gif';
 import GifList from './gif_list';
 
+const GIPHY_API_KEY = process.env.REACT_APP_GIPHY_API_KEY;
+
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       gifs: [],
-      selectedGifId: ""
-      // while none is selected, returns the first in the list
-      // when one is clicked returns that one
+      selectedGifId: "h7jp2zWsi0ga4rQqDX"
     };
   }
 
-  // create a selectedGif function
-  // selectedGif = (id) => {
-  //   this.setState({
-  //     selectedGif: id
-  //   });
-  // }
-
   search = (query) => {
-    giphy('eTjUGLIdOYW9i30EBA36l7Wnb8JT2OXJ').search({
+    giphy({ apiKey: GIPHY_API_KEY, https: true }).search({
       q: query,
       rating: "g",
       limit: 10
@@ -33,6 +27,12 @@ class App extends Component {
       this.setState({
         gifs: result.data
       });
+    });
+  }
+
+  selectGif = (id) => {
+    this.setState({
+      selectedGifId: id
     });
   }
 
@@ -50,7 +50,7 @@ class App extends Component {
           </div>
         </div>
         <div className="right-scene">
-          <GifList gifs={this.state.gifs} />
+          <GifList gifs={this.state.gifs} selectGif={this.state.selectGif} />
         </div>
       </div>
     );

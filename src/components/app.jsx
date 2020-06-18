@@ -14,7 +14,7 @@ class App extends Component {
 
     this.state = {
       gifs: [],
-      selectedGifId: "h7jp2zWsi0ga4rQqDX"
+      selectedGifId: null// "h7jp2zWsi0ga4rQqDX"
     };
   }
 
@@ -38,10 +38,6 @@ class App extends Component {
   }
 
   render () {
-    // const gifs = [
-    //   { id: "m9pQ6KapT7Cq3DQ5DZ" },
-    //   { id: "h7jp2zWsi0ga4rQqDX" }
-    // ];
     return (
       <div>
         <div className="left-scene">
@@ -51,7 +47,7 @@ class App extends Component {
           </div>
         </div>
         <div className="right-scene">
-          <GifList gifs={this.state.gifs} selectGif={this.state.selectGif} />
+          <GifList gifs={this.state.gifs} selectGif={this.selectGif} />
         </div>
       </div>
     );

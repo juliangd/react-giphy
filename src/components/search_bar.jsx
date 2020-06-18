@@ -9,12 +9,17 @@ class SearchBar extends Component {
     };
   }
 
-  handleUpdate = (event) => {
+  shouldComponentUpdate() {
+    return false;
+  }
+
+    handleChange = (event) => {
     this.setState({
       term: event.target.value
     });
     this.props.search(event.target.value);
   }
+
 
   render() {
     return (
@@ -22,7 +27,7 @@ class SearchBar extends Component {
         value={this.state.term}
         type="text"
         className="form-control form-search"
-        onChange={this.handleUpdate}
+        onChange={this.handleChange}
       />
     );
   }
